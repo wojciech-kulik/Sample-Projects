@@ -1,0 +1,93 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="ClientsManager.Views.ClientsCriteriaListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controls="clr-namespace:ClientsManager.Controls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="Clients Manager" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Filtered list" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+  
+                <TextBlock  Grid.Column="0" HorizontalAlignment="Right" Text="Date of birth range: " />           
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="{Binding BeginDate, Converter={StaticResource DateConverter}}" />
+                    <TextBlock Foreground="Gray" Text=" - " />
+                    <TextBlock Foreground="Gray" Text="{Binding EndDate, Converter={StaticResource DateConverter}}" />               
+                </StackPanel>
+                    
+                <TextBlock Grid.Row="1" HorizontalAlignment="Right" Text="Distance: " />
+                <TextBlock Grid.Row="1" Grid.Column="1" Foreground="Gray" 
+                           Text="{Binding Distance, Converter={StaticResource DistanceConverter}}" />
+            </Grid>
+        </StackPanel>
+
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>           
+         
+            <ListBox Grid.Row="1" VerticalContentAlignment="Top" ItemsSource="{Binding Clients}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="Transparent" Margin="0,-10,0,15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Name="tbFullname" Text="{Binding FullName}" Style="{StaticResource PhoneTextLargeStyle}" TextTrimming="WordEllipsis"/>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Birthdate, Converter={StaticResource DateConverter}}" 
+                                           Style="{StaticResource PhoneTextSubtleStyle}" TextTrimming="WordEllipsis" />
+                                <TextBlock Grid.Column="1" HorizontalAlignment="Right" 
+                                           Text="{Binding Distance, Converter={StaticResource StringFormatConverter}, 
+                                                  ConverterParameter='\{0:N2\} km'}" 
+                                           Style="{StaticResource PhoneTextSubtleStyle}" TextTrimming="WordEllipsis" />
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>

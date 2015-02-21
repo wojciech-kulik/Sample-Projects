@@ -1,0 +1,128 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="ClientsManager.Views.ClientEditView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:ClientsManager.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="Clients Manager" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Client details" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical" x:Name="ContentPanel" Margin="12,0,12,0">
+                <TextBlock Text="Forename" />
+                <controls:PhoneTextBox Text="{Binding Forename,Mode=TwoWay}" Margin="0,0,0,13" />
+
+                <TextBlock Text="Surname"/>
+                <controls:PhoneTextBox Text="{Binding Surname,Mode=TwoWay}" Margin="0,0,0,13"/>
+
+                <TextBlock Text="Group" />
+                <toolkit:ListPicker ItemsSource="{Binding GroupsList}" SelectedItem="{Binding Group, Mode=TwoWay}" Margin="13,0,13,20">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <toolkit:ListPickerItem>
+                                <Binding Path="GroupName"></Binding>
+                            </toolkit:ListPickerItem>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
+                
+                <TextBlock Text="Date of birth" />
+                <Grid Margin="0,0,0,13">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <toolkit:DatePicker Name="dpBirthdate" Value="{Binding Birthdate,Mode=TwoWay}" />
+                    <Button Grid.Column="1" Width="70" Height="70" Click="btnClearBirthdateClick">
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <Image Source="/images/appbarWrong.png" Width="40" Height="40" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Residence (latitude)" />
+                    <controls:PhoneTextBox Grid.Row="1" x:Name="tbLatitude" 
+                                           Text="{Binding Latitude, Mode=TwoWay, Converter={StaticResource NullToDoubleConverter}}" 
+                                           InputScope="TelephoneAreaCode" Margin="0,0,0,13" Foreground="Black"
+                                           KeyDown="tbLatitude_KeyDown" />
+                    
+                    <Button Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Width="70" Height="70" Click="btnCoordinatesClick">
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <Image Source="/images/geo.png" Width="40" Height="40" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>
+
+                    <TextBlock Grid.Row="2" Text="Residence (longitude)" />
+                    <controls:PhoneTextBox Grid.Row="3" x:Name="tbLongitude"
+                                           Text="{Binding Longitude, Mode=TwoWay, Converter={StaticResource NullToDoubleConverter}}" 
+                                           InputScope="TelephoneAreaCode" Foreground="Black"
+                                           KeyDown="tbLatitude_KeyDown"/>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Is on marketing mailing list" Width="Auto" VerticalAlignment="Center"  />
+                    <CheckBox IsChecked="{Binding IsActive,Mode=TwoWay}" Width="Auto" Height="Auto" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <Image x:Name="photo" MaxHeight="400" Source="{Binding Photo, Mode=TwoWay}"></Image>
+
+                <Button Content="Set photo" cal:Message.Attach="PhotoFromGallery()"></Button>
+                <Button Content="Delete photo" Click="btnDeletePhotoClick"  
+                        Visibility="{Binding Photo, Converter={StaticResource ObjectToVisibilityConverter}}" />                    
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <cal:AppBarButton IconUri="/Images/appbarCheck.png" Message="Save()" Text="Save"/>
+            <cal:AppBarButton IconUri="/Images/appbarWrong.png" Message="Cancel()" Text="Cancel"/>
+         
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

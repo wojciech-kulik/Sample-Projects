@@ -1,0 +1,24 @@
+﻿<Application 
+    x:Class="ClientsManager.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ClientsManager"
+    xmlns:conv="clr-namespace:ClientsManager.Converters"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <local:ClientsManagerBootStrapper x:Key="bootstrapper" />
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <conv:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter"/>
+        <conv:GroupToGroupNameConverter x:Key="GroupToGroupNameConverter" />
+        <conv:NullToDoubleConverter x:Key="NullToDoubleConverter" />
+        <conv:StringFormatConverter x:Key="StringFormatConverter" />
+        <conv:DateConverter x:Key="DateConverter" />
+        <conv:DistanceConverter x:Key="DistanceConverter" />
+        <conv:DateToStringConverter x:Key="DateToStringConverter" />
+        <conv:ZeroDoubleConverter x:Key="ZeroDoubleConverter" />
+        <conv:EmptyStringConverter x:Key="EmptyStringConverter" />
+    </Application.Resources>
+</Application>
