@@ -1,0 +1,111 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    x:Class="Pizzernator.Views.MainPageView"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignData /DataSample/MainPageData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="FavouritesTemplate">
+            <Grid cal:Message.Attach="[Event Tap] = [ShowPreview($dataContext)]">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu cal:Action.TargetWithoutContext="{Binding DataContext, ElementName=ContentPanel}">
+                        <toolkit:MenuItem Header="Remove" cal:Message.Attach="[Event Tap]=[RemoveFavourite($dataContext)]"/>
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+
+                <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 15">
+                    <Image Source="{Binding ImageSource}" Width="70" Height="70" Margin="0, 10, 25, 0" VerticalAlignment="Top" />
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Name}" FontSize="30" />
+                        <TextBlock Text="{Binding Address}" Foreground="LightGray" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RestaurantsTemplate">
+            <Grid cal:Message.Attach="[Event Tap] = [ShowPreview($dataContext)]">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu cal:Action.TargetWithoutContext="{Binding DataContext, ElementName=ContentPanel}">
+                        <toolkit:MenuItem Header="Add to favorites" cal:Message.Attach="[Event Tap]=[AddToFavourite($dataContext)]"/>
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+
+                <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 15">
+                    <Image Source="{Binding ImageSource}" Width="70" Height="70" Margin="0, 11, 25, 0" VerticalAlignment="Top" />
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Name}" FontSize="30" />
+                        <TextBlock Text="{Binding Distance, Converter={StaticResource DistanceConverter}}" Foreground="LightGray" />
+                        <TextBlock Text="{Binding Address}" Foreground="LightGray" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <RadialGradientBrush x:Key="MainBackground">
+            <GradientStop Color="#FF062A47" Offset="0"/>
+            <GradientStop Color="#FF051C2E" Offset="1"/>
+        </RadialGradientBrush>
+    </phone:PhoneApplicationPage.Resources>
+    
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{Binding Source={StaticResource MainBackground}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,0">
+            <TextBlock Text="Pizzernator" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,-20,12,0">
+            <phone:Pivot>
+                <phone:Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Margin="-13,10,20,0" />
+                    </DataTemplate>
+                </phone:Pivot.HeaderTemplate>
+
+                <phone:PivotItem Header="Pizzerie">
+                    <Grid>
+                        <ProgressBar IsIndeterminate="True" Foreground="#FF12BB39" Visibility="{Binding ProgressBarVisibility}"/>
+
+                        <phone:LongListSelector ItemsSource="{Binding Restaurants}"
+                                                ItemTemplate="{Binding Source={StaticResource RestaurantsTemplate}}" />
+                    </Grid>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="Map">
+                    <maps:Map x:Name="Map" />
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="Favorites">
+                    <phone:LongListSelector ItemsSource="{Binding Favourites}" 
+                                            ItemTemplate="{Binding Source={StaticResource FavouritesTemplate}}"/>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="False" IsVisible="True">
+            <cal:AppBarButton Message="LoadRestaurants" IconUri="/Images/refresh.png" Text="Refresh"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
