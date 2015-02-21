@@ -7,3 +7,6 @@ This project is written in C# for Windows Phone 8 in Visual Studio 2012.
 
 # Remarks
 **It uses a Google Api, so you need to get a key from [HERE](https://developers.google.com/places/documentation/index#Introduction) and set it in GoogleApiService.cs**
+
+# Screenshots
+![Screenshot1](/screenshots/screenshot1.png) ![Screenshot2](/screenshots/screenshot2.png)
