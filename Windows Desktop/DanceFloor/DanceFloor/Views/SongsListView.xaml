@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="DanceFloor.Views.SongsListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrls="clr-namespace:DanceFloor.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Images/abstract-glowing-waves-2332.png" />
+        </Grid.Background>
+
+        <TextBlock Text="List of songs" Foreground="White" FontFamily="Calibri" FontSize="60" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Yellow" BlurRadius="10" Opacity="0.5" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <ctrls:SongsList VerticalAlignment="Center" x:Name="songsList" HorizontalAlignment="Center" Margin="-250,-200,0,0" 
+                         ItemsSource="{Binding Songs}" SelectedSong="{Binding SelectedSong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+</UserControl>

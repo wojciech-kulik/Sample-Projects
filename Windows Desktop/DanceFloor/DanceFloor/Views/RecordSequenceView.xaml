@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="DanceFloor.Views.RecordSequenceView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ctrls="clr-namespace:DanceFloor.Controls"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      FontFamily="Calibri">
+
+    <UserControl.Background>
+        <ImageBrush ImageSource="..\Images\game_background.jpg" />
+    </UserControl.Background>
+
+    <UserControl.Resources>
+        <Storyboard x:Key="arrowsAnimation">
+            <DoubleAnimation Storyboard.TargetName="notes" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- PLAYBOARD -->
+        <Grid x:Name="playboard" Grid.Row="1" ClipToBounds="True">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- NOTES -->
+            <Canvas x:Name="notes" Width="410" 
+                    VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                <Canvas.RenderTransform>
+                    <TranslateTransform />
+                </Canvas.RenderTransform>
+            </Canvas>          
+
+            <!-- HITPANEL -->
+            <ctrls:HitPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50"/>
+
+            <TextBlock Grid.Row="1" Text="Use 2nd player keys to put bombs" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="25" Margin="10" Padding="10" Background="#7FFFFFFF"/>
+        </Grid>
+    </Grid>
+</UserControl>

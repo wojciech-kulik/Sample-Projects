@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="DanceFloor.Views.GameModeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ctrls="clr-namespace:DanceFloor.Controls"
+             xmlns:conv="clr-namespace:DanceFloor.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <conv:DifficultyToBtnBackgroundConverter x:Key="DifficultyToBtnBackgroundConverter" />
+        <conv:GameModeToBtnBackgroundConverter x:Key="GameModeToBtnBackgroundConverter" />
+        <conv:GameModeToVisibility x:Key="GameModeToVisibility" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Images/abstract-glowing-waves-2332.png" />
+        </Grid.Background>
+
+        <TextBlock Text="Select a level and number of players" Foreground="White" FontFamily="Calibri" FontSize="60" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Yellow" BlurRadius="10" Opacity="0.5" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0">
+                <StackPanel.Resources>
+                    <Style TargetType="ctrls:MenuButton">
+                        <Setter Property="Height" Value="60" />
+                        <Setter Property="FontSize" Value="35" />
+                        <Setter Property="SnapsToDevicePixels" Value="True" />
+                        <Setter Property="Width" Value="350" />
+                        <Setter Property="Height" Value="60" />
+                        <Setter Property="FontFamily" Value="Calibri" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <StackPanel Margin="0,0,80,0" >
+                    <ctrls:MenuButton x:Name="btn1Player" Text="One player" ButtonBackground="{Binding Game, Converter={StaticResource GameModeToBtnBackgroundConverter}, ConverterParameter=single}" />
+
+                    <StackPanel x:Name="p1DifficultyPanel">
+                        <ctrls:MenuButton x:Name="p1Easy" Text="Easy" ButtonBackground="{Binding Game.Player1, Converter={StaticResource DifficultyToBtnBackgroundConverter}, ConverterParameter='easy'}" Margin="0,100,0,0" />
+                        <ctrls:MenuButton x:Name="p1Medium" Text="Medium" ButtonBackground="{Binding Game.Player1, Converter={StaticResource DifficultyToBtnBackgroundConverter}, ConverterParameter='medium'}" Margin="0,30,0,0"  />
+                        <ctrls:MenuButton x:Name="p1Hard" Text="Hard" ButtonBackground="{Binding Game.Player1, Converter={StaticResource DifficultyToBtnBackgroundConverter}, ConverterParameter='hard'}" Margin="0,30,0,0"  />
+                    </StackPanel>
+                </StackPanel>
+                
+                <StackPanel>
+                    <ctrls:MenuButton x:Name="btn2Players" Text="Two players" 
+                                      ButtonBackground="{Binding Game, Converter={StaticResource GameModeToBtnBackgroundConverter}, ConverterParameter=multi}"
+                                      Visibility="{Binding IsMultiplayer, Converter={StaticResource GameModeToVisibility}}"/>
+
+                    <StackPanel x:Name="p2DifficultyPanel" Visibility="{Binding Game.IsMultiplayer, Converter={StaticResource GameModeToVisibility}}">
+                        <ctrls:MenuButton x:Name="p2Easy" Text="Easy" ButtonBackground="{Binding Game.Player2, Converter={StaticResource DifficultyToBtnBackgroundConverter}, ConverterParameter='easy'}" Margin="0,100,0,0" />
+                        <ctrls:MenuButton x:Name="p2Medium" Text="Medium" ButtonBackground="{Binding Game.Player2, Converter={StaticResource DifficultyToBtnBackgroundConverter}, ConverterParameter='medium'}" Margin="0,30,0,0"  />
+                        <ctrls:MenuButton x:Name="p2Hard" Text="Hard" ButtonBackground="{Binding Game.Player2, Converter={StaticResource DifficultyToBtnBackgroundConverter}, ConverterParameter='hard'}" Margin="0,30,0,0"  />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
