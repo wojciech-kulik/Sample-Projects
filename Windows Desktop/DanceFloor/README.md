@@ -18,10 +18,10 @@ You can download binaries [here](_Binaries/DanceFloor.zip).
 - Use arrows (1st player) and WSAD (2nd player).  
 - Unfortunately the game doesn't contain prepared songs, because of licenses. However, you can easily generate your own songs using mp3 files.
 
-# Used libraries
+## Used libraries
 - [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
 
-# To do 
+## To do 
 - settings
 - highscores
 - sounds (for example while hitting keys)
