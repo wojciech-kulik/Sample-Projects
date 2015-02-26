@@ -3,7 +3,7 @@
 This game has been created to practice C# WPF.  
 It's a simplified version of [StepMania](https://github.com/stepmania).  
 
-You can check out project architecture [here](_Project Architecture/Game.html) (not everything is up to date).
+You can check out project architecture [here](http://www.wojciechkulik.pl/DanceFloor/) (not everything is up to date).
 
 ## Screenshots
 Single player:  
