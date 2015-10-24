@@ -1,0 +1,51 @@
+#version 330 core
+
+layout(location = 0) in vec3 position;
+
+out vec3 fragmentColor;
+
+uniform mat4 MVP;
+uniform vec2 partPos;
+
+const float PI	= 3.14159;
+const float SCALE = 20.0f;
+
+float degtorad(float deg)
+{
+	return deg * PI / 180.;
+}
+
+void main()
+{
+	vec3  color;
+	float longitude = partPos.x; 
+	float latitude  = partPos.y; 
+	float h			= position.z;
+
+	//normalize vector of vertex positon (relative to whole part)
+	float xInPart = position.x / 1200.;
+	float yInPart = position.y / 1200.;
+
+	//calculate x
+	float x = SCALE * (degtorad(longitude + xInPart));
+
+	//calculate y
+	float y_top = SCALE * log(tan(PI / 4.0f +  degtorad(latitude) / 2.0f));
+	float y_bottom = SCALE * log(tan(PI / 4.0f +  degtorad(latitude - 1.) / 2.0f));
+	float y_offset = -position.y * abs((y_top - y_bottom) / 1200.);
+
+	//see: http://en.wikipedia.org/wiki/Mercator_projection
+
+    gl_Position = MVP * vec4(x, y_top + y_offset, 0, 1);	
+
+	//choose a color depends on height
+	if		(h < -500)  color = vec3(0.,       0.,		 0.);  //->black     
+	else if (h < 10 )   color = vec3(0.,       0.,       1.);  //->blue
+    else if (h < 500)   color = vec3(0.,       h/500,    0.);  //->green
+    else if (h < 1000)  color = vec3(h/500-1,  1.,       0.);  //->yellow
+    else if (h < 1500)  color = vec3(1.,       2.-h/500, 0.);  //->red
+    else                color = vec3(1.,1.,1.);                //->white
+
+	fragmentColor = color;
+}
+

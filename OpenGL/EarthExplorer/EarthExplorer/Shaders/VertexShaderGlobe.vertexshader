@@ -1,0 +1,51 @@
+#version 330 core
+
+layout(location = 0) in vec3 position;
+
+out vec3 fragmentColor;
+
+uniform mat4 MVP;
+uniform vec2 partPos;
+
+const float EARTH_RADIUS = 1.0;
+const float EARTH_RADIUS_REAL_M = 6371000.;
+const float PI	= 3.14159;
+
+float degtorad(float deg)
+{
+	return deg * PI / 180.;
+}
+
+
+void main()
+{
+	vec3  color;
+	float longitude = partPos.x + position.x / 1200.; 
+	float latitude	= partPos.y - position.y / 1200.; 
+	float h			= position.z;
+	float scaledH	= 0.02f * position.z / 5500.;
+	
+	// Deg to rad
+	longitude = degtorad(longitude);
+	latitude = degtorad(latitude);
+
+	// Calculate coordinates in 3D space
+	float X =  (EARTH_RADIUS + scaledH) * cos(latitude) * sin(longitude);
+    float Y =  (EARTH_RADIUS + scaledH) * sin(latitude);
+    float Z =  (EARTH_RADIUS + scaledH) * cos(latitude) * cos(longitude);
+
+	//see: http://stackoverflow.com/questions/10473852/convert-latitude-and-longitude-to-point-in-3d-space
+
+
+    gl_Position = MVP * vec4(X, Y, Z, 1);	
+
+	if		(h < -500)  color = vec3(0.,       0.,		 0.);  //->black      
+	else if (h < 10 )   color = vec3(0.,       0.,       1.);  //->blue
+    else if (h < 500)   color = vec3(0.,       h/500,    0.);  //->green
+    else if (h < 1000)  color = vec3(h/500-1,  1.,       0.);  //->yellow
+    else if (h < 1500)  color = vec3(1.,       2.-h/500, 0.);  //->red
+    else                color = vec3(1.,1.,1.);                //->white
+
+	fragmentColor = color;
+}
+

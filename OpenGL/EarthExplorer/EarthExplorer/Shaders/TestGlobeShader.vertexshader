@@ -1,0 +1,40 @@
+#version 330 core
+
+layout(location = 0) in vec2 position;
+
+out vec3 fragmentColor;
+
+uniform mat4 MVP;
+const float EARTH_RADIUS = 1.5;
+const float PI	= 3.14159;
+
+float degtorad(float deg)
+{
+	return deg * PI / 180.;
+}
+
+void main()
+{
+	vec3  color = vec3(0., 0., 0.);
+	float longitude = position.y; 
+	float latitude	= position.x; 
+
+	float X = 0;
+	float Y = 0;	
+	float Z = 0.;
+
+	longitude = degtorad(longitude);
+	latitude = degtorad(latitude);
+
+	// see: http://www.mathworks.de/help/toolbox/aeroblks/llatoecefposition.html
+    float f  = 1.0/298.257223563;                         
+    float ls = atan((1 - f)*(1 - f) * tan(latitude));
+
+    X = EARTH_RADIUS * cos(ls) * cos(longitude) + Z * cos(latitude) * cos(longitude);
+    Y = EARTH_RADIUS * sin(ls) + Z * sin(latitude);
+    Z = -EARTH_RADIUS * cos(ls) * sin(longitude) + Z * cos(latitude) * sin(longitude);
+
+    gl_Position = MVP * vec4(X, Y, Z, 1);	
+	fragmentColor = color;
+}
+
