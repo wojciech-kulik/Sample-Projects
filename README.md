@@ -1,5 +1,5 @@
 # Sample-Projects
-This repository contains my sample projects in C# for Windows Desktop and Windows Phone.
+This repository contains my sample projects in C# and C++.
 
 ## You can learn here how to:
 - use [Caliburn.Micro library](https://github.com/Caliburn-Micro/Caliburn.Micro)
@@ -8,3 +8,4 @@ This repository contains my sample projects in C# for Windows Desktop and Window
 - divide a project into smaller parts
 - use **Event Aggregator** to provide communication between objects
 - implement **MVVM** pattern
+- how to use **OpenGL**
