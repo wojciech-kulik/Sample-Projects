@@ -39,13 +39,12 @@ void main()
     gl_Position = MVP * vec4(x, y_top + y_offset, 0, 1);	
 
 	//choose a color depends on height
-	if		(h < -500)  color = vec3(0.,       0.,		 0.);  //->black     
-	else if (h < 10 )   color = vec3(0.,       0.,       1.);  //->blue
-    else if (h < 500)   color = vec3(0.,       h/500,    0.);  //->green
-    else if (h < 1000)  color = vec3(h/500-1,  1.,       0.);  //->yellow
-    else if (h < 1500)  color = vec3(1.,       2.-h/500, 0.);  //->red
-    else                color = vec3(1.,1.,1.);                //->white
-
+	if		(h < -500)  color = vec3(0.,       0.,		 	0.);  //->black      
+	else if (h < 10 )   color = vec3(0.,       0.,       	1.);  //->blue
+    else if (h < 500)   color = vec3(0.,       h/500,    	0.);  //->green
+    else if (h < 1500)  color = vec3(h/1500,   1.,       	0.);  //->yellow
+    else  				color = vec3(1.,   	   .1 + h/4000, 0.);  //->red
+	
 	fragmentColor = color;
 }
 
