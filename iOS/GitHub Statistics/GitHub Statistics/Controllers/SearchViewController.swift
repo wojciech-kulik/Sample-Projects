@@ -34,6 +34,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         recentlySearched.append("test3")
     }
     
+    // MARK: - API Operations
+    
     func downloadAvatarFor(username: String, avatarUrl: String, tableView: UITableView, cell: UITableViewCell, indexPath: NSIndexPath) {
         if let url = NSURL(string: avatarUrl) {
             if let data = self.imageCache[username] {
@@ -45,6 +47,26 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                         self.imageCache[username] = imageData
                     }
                 }
+            }
+        }
+    }
+    
+    func getUsers(searchPhrase: String) {
+        print("start search \(searchPhrase)")
+        
+        self.gitHubApi.searchUsers(searchPhrase) { users in
+            dispatch_async(dispatch_get_main_queue()) {
+                if self.lastSearchPhrase != searchPhrase {
+                    return
+                }
+                
+                self.addToRecentlySearched(searchPhrase)
+                
+                print("results received for \(searchPhrase)")
+                self.users = users
+                self.searchResultsTableView.reloadData()
+                self.hideProgress()
+                self.searchBar.showsCancelButton = true
             }
         }
     }
@@ -93,22 +115,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                     return
                 }
                 
-                print("start search \(lowerSearchText)")
-                self.gitHubApi.searchUsers(lowerSearchText) { users in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        if self.lastSearchPhrase != lowerSearchText {
-                            return
-                        }
-                        
-                        self.addToRecentlySearched(lowerSearchText)
-                        
-                        print("results received for \(lowerSearchText)")
-                        self.users = users
-                        self.searchResultsTableView.reloadData()
-                        self.hideProgress()
-                        self.searchBar.showsCancelButton = true
-                    }
-                }
+                self.getUsers(lowerSearchText)
             }
         } else {
             self.lastSearchPhrase = nil
