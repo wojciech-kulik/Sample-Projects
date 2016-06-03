@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B16757F1D003A7F00B1E5BE /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B16757E1D003A7F00B1E5BE /* RepositoryListViewController.swift */; };
 		7B1675D01D0075BA00B1E5BE /* GitHubApi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B1675CF1D0075BA00B1E5BE /* GitHubApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B1675D41D0075BA00B1E5BE /* GitHubApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1675CD1D0075BA00B1E5BE /* GitHubApi.framework */; };
 		7B1675D51D0075BA00B1E5BE /* GitHubApi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1675CD1D0075BA00B1E5BE /* GitHubApi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -22,11 +21,12 @@
 		7B1675F81D02145D00B1E5BE /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1675F71D02145D00B1E5BE /* SearchResultCell.swift */; };
 		7B1675FA1D0219B600B1E5BE /* RecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1675F91D0219B600B1E5BE /* RecentSearchCell.swift */; };
 		7B9A44B21CFF73A1004F125B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A44B11CFF73A1004F125B /* AppDelegate.swift */; };
-		7B9A44B41CFF73A1004F125B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A44B31CFF73A1004F125B /* SearchViewController.swift */; };
-		7B9A44B61CFF73A1004F125B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A44B51CFF73A1004F125B /* FavoritesViewController.swift */; };
 		7B9A44B91CFF73A1004F125B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A44B71CFF73A1004F125B /* Main.storyboard */; };
 		7B9A44BB1CFF73A1004F125B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A44BA1CFF73A1004F125B /* Assets.xcassets */; };
 		7B9A44BE1CFF73A1004F125B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A44BC1CFF73A1004F125B /* LaunchScreen.storyboard */; };
+		7BA1D9D21D02326300D9A735 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA1D9CF1D02326300D9A735 /* FavoritesViewController.swift */; };
+		7BA1D9D31D02326300D9A735 /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA1D9D01D02326300D9A735 /* RepositoryListViewController.swift */; };
+		7BA1D9D41D02326300D9A735 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA1D9D11D02326300D9A735 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7B16757E1D003A7F00B1E5BE /* RepositoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryListViewController.swift; sourceTree = "<group>"; };
 		7B1675CD1D0075BA00B1E5BE /* GitHubApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GitHubApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B1675CF1D0075BA00B1E5BE /* GitHubApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GitHubApi.h; sourceTree = "<group>"; };
 		7B1675D11D0075BA00B1E5BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,12 +76,13 @@
 		7B1675F91D0219B600B1E5BE /* RecentSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentSearchCell.swift; path = Controls/RecentSearchCell.swift; sourceTree = "<group>"; };
 		7B9A44AE1CFF73A1004F125B /* GitHub Statistics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub Statistics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9A44B11CFF73A1004F125B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7B9A44B31CFF73A1004F125B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		7B9A44B51CFF73A1004F125B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		7B9A44B81CFF73A1004F125B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B9A44BA1CFF73A1004F125B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B9A44BD1CFF73A1004F125B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B9A44BF1CFF73A1004F125B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BA1D9CF1D02326300D9A735 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoritesViewController.swift; path = Controllers/FavoritesViewController.swift; sourceTree = "<group>"; };
+		7BA1D9D01D02326300D9A735 /* RepositoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryListViewController.swift; path = Controllers/RepositoryListViewController.swift; sourceTree = "<group>"; };
+		7BA1D9D11D02326300D9A735 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = Controllers/SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,9 +126,9 @@
 		7B1675811D00735900B1E5BE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7B9A44B31CFF73A1004F125B /* SearchViewController.swift */,
-				7B16757E1D003A7F00B1E5BE /* RepositoryListViewController.swift */,
-				7B9A44B51CFF73A1004F125B /* FavoritesViewController.swift */,
+				7BA1D9D11D02326300D9A735 /* SearchViewController.swift */,
+				7BA1D9D01D02326300D9A735 /* RepositoryListViewController.swift */,
+				7BA1D9CF1D02326300D9A735 /* FavoritesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -367,12 +367,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B16757F1D003A7F00B1E5BE /* RepositoryListViewController.swift in Sources */,
 				7B1675FA1D0219B600B1E5BE /* RecentSearchCell.swift in Sources */,
-				7B9A44B61CFF73A1004F125B /* FavoritesViewController.swift in Sources */,
+				7BA1D9D41D02326300D9A735 /* SearchViewController.swift in Sources */,
 				7B9A44B21CFF73A1004F125B /* AppDelegate.swift in Sources */,
+				7BA1D9D31D02326300D9A735 /* RepositoryListViewController.swift in Sources */,
 				7B1675F81D02145D00B1E5BE /* SearchResultCell.swift in Sources */,
-				7B9A44B41CFF73A1004F125B /* SearchViewController.swift in Sources */,
+				7BA1D9D21D02326300D9A735 /* FavoritesViewController.swift in Sources */,
 				7B1675F31D018B8E00B1E5BE /* UILoadingOverlayController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,6 +619,7 @@
 				7B1675D81D0075BA00B1E5BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B1675EA1D00912A00B1E5BE /* Build configuration list for PBXNativeTarget "Utils" */ = {
 			isa = XCConfigurationList;
@@ -627,6 +628,7 @@
 				7B1675EC1D00912A00B1E5BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B9A44A91CFF73A1004F125B /* Build configuration list for PBXProject "GitHub Statistics" */ = {
 			isa = XCConfigurationList;
