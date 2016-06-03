@@ -27,7 +27,8 @@ class RecentSearchCell: UITableViewCell {
         
         imageView!.frame.origin.x = 5
         let imageRight = imageView!.frame.origin.x + imageView!.frame.width
-        textLabel?.frame = CGRectMake(imageRight + 10, 0, textLabel!.frame.width, textLabel!.frame.height)
+        textLabel?.frame = CGRectMake(imageRight + 5, 0, textLabel!.frame.width, textLabel!.frame.height)
+        separatorInset.left = textLabel!.frame.origin.x
     }
     
     func setupSelectionColor() {

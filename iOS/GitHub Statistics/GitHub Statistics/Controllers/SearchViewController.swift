@@ -29,6 +29,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         self.searchResultsTableView.separatorStyle = .None
+        recentlySearched.append("test1")
+        recentlySearched.append("test2")
+        recentlySearched.append("test3")
     }
     
     func downloadAvatarFor(username: String, avatarUrl: String, tableView: UITableView, cell: UITableViewCell, indexPath: NSIndexPath) {

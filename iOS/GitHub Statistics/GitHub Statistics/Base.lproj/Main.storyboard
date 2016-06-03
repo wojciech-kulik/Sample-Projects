@@ -28,7 +28,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lZo-lV-Q3R">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="separatorColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="0.10444504310344828" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.1455304959" green="0.1455304959" blue="0.1455304959" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="cnb-hj-wsj" imageView="QSy-Rf-YMA" style="IBUITableViewCellStyleDefault" id="wRT-d9-xTo" customClass="RecentSearchCell" customModule="GitHub_Statistics" customModuleProvider="target">
