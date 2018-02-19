@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:ext="clr-namespace:DynamicTableView.Extensions"
+    x:Class="DynamicTableView.Views.ContactDetailsView">
+
+	<TableView ext:DynamicTableSections.Sections="{Binding Sections}" 
+        Intent="Form" BackgroundColor="#eee" HasUnevenRows="true"/>
+</ContentPage>
