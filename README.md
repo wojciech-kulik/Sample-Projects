@@ -9,4 +9,7 @@ This repository contains my sample projects in C# and C++.
 - divide a project into smaller parts
 - use **Event Aggregator** to provide communication between objects
 - implement **MVVM** pattern
-- use **OpenGL**
+- use **OpenGL**  
+
+## Read more
+Visit https://wojciechkulik.pl to get more information about those projects.
