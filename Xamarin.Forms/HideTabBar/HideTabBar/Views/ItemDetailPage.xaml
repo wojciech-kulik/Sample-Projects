@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<controls:TabDetailPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="HideTabBar.Views.ItemDetailPage" 
+    xmlns:controls="clr-namespace:HideTabBar.Controls" 
+    Title="{Binding Title}">
+    <Grid>
+        <TableView Intent="Form">
+            <TableSection Title="Section 1">
+                <TextCell Text="Row 1" />   
+                <TextCell Text="Row 2" />   
+                <TextCell Text="Row 3" />   
+                <TextCell Text="Row 4" />   
+                <TextCell Text="Row 5" />    
+            </TableSection>
+            
+            <TableSection Title="Section 2">
+                <TextCell Text="Row 1" />   
+                <TextCell Text="Row 2" />   
+                <TextCell Text="Row 3" />   
+                <TextCell Text="Row 4" />   
+                <TextCell Text="Row 5" />   
+            </TableSection>
+            
+            <TableSection Title="Section 3">
+                <TextCell Text="Row 1" />   
+                <TextCell Text="Row 2" />   
+                <TextCell Text="Row 3" />   
+                <TextCell Text="Row 4" />   
+                <TextCell Text="Row 5" />  
+            </TableSection>
+        </TableView>
+    </Grid>
+</controls:TabDetailPage>
